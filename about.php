@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Calculate total quantity of products in the session cart.
+// Calculate total quantity of products in the session cart
 $total_cart_count = 0;
 
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
@@ -12,7 +12,6 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,6 +145,7 @@ a{
 .login-pill{
     display:inline-flex;
     align-items:center;
+    justify-content:center;
     gap:7px;
     padding:10px 15px;
     border-radius:11px;
@@ -166,10 +166,6 @@ a{
     border:0;
     cursor:pointer;
     font-family:'Plus Jakarta Sans',sans-serif;
-}
-
-.logout-pill:focus{
-    outline:none;
 }
 
 .icon-btn{
@@ -220,7 +216,7 @@ a{
 }
 
 /* =========================================================
-   PAGE HERO
+   ABOUT HERO
 ========================================================= */
 
 .about-hero{
@@ -232,9 +228,10 @@ a{
     background:
         linear-gradient(
             120deg,
-            #ffffff 0%,
-            #d8e1ff 55%,
-            #c7d5ff 100%
+            #fff 0%,
+            #dce5ff 48%,
+            #cbbce8 75%,
+            #ffc7df 100%
         );
 }
 
@@ -242,48 +239,63 @@ a{
     content:"";
     position:absolute;
     inset:0;
+
     background:
         linear-gradient(
             135deg,
             transparent 0 55%,
-            rgba(40,84,197,.20) 55% 61%,
+            rgba(40,84,197,.18) 55% 61%,
             transparent 61%
         ),
         linear-gradient(
             140deg,
             transparent 0 67%,
-            rgba(239,58,155,.20) 67% 75%,
-            transparent 75%
+            rgba(239,58,155,.18) 67% 76%,
+            transparent 76%
         );
+
     pointer-events:none;
+}
+
+.about-hero:after{
+    content:"";
+    position:absolute;
+    width:330px;
+    height:330px;
+    right:-120px;
+    top:-160px;
+    border-radius:50%;
+    background:rgba(23,71,199,.12);
 }
 
 .about-hero-content{
     position:relative;
     z-index:2;
-    max-width:720px;
+    width:min(1120px,100%);
+    margin:auto;
     padding:65px 70px;
 }
 
-.hero-badge{
+.about-badge{
     display:inline-flex;
     align-items:center;
     gap:8px;
     padding:8px 15px;
     border-radius:999px;
-    background:#fff;
+    background:rgba(255,255,255,.78);
     border:1px solid #b7c8ff;
     color:#1747c7;
     font-size:10px;
     font-weight:800;
-    letter-spacing:.7px;
+    letter-spacing:.8px;
 }
 
 .about-hero h1{
-    margin-top:16px;
+    max-width:650px;
+    margin-top:15px;
     color:#111827;
-    font-size:clamp(38px,5vw,64px);
-    line-height:.95;
+    font-size:clamp(38px,5vw,62px);
+    line-height:.98;
     font-weight:900;
     letter-spacing:-3px;
     text-transform:uppercase;
@@ -294,9 +306,9 @@ a{
 }
 
 .about-hero p{
-    max-width:600px;
+    max-width:650px;
     margin-top:17px;
-    color:#525b6c;
+    color:#596579;
     font-size:13px;
     line-height:1.7;
 }
@@ -310,17 +322,95 @@ a{
     background:#fff;
 }
 
-.intro-container{
+.intro-wrapper{
     max-width:1120px;
     margin:auto;
+
     display:grid;
     grid-template-columns:1.05fr .95fr;
     gap:55px;
     align-items:center;
 }
 
-.intro-content .section-badge,
-.story-content .section-badge{
+.intro-image{
+    position:relative;
+    min-height:330px;
+    border-radius:25px;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1747c7,
+            #102f91 55%,
+            #f0208d
+        );
+
+    box-shadow:0 20px 40px rgba(40,84,197,.20);
+}
+
+.intro-image:before{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    right:-80px;
+    top:-100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.10);
+}
+
+.intro-image:after{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    left:-70px;
+    bottom:-70px;
+    border-radius:50%;
+    background:rgba(240,32,141,.25);
+}
+
+.intro-image-content{
+    position:absolute;
+    inset:0;
+    z-index:2;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    color:#fff;
+    text-align:center;
+    padding:30px;
+}
+
+.intro-logo{
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:-3px;
+}
+
+.intro-logo span{
+    color:#ff7fba;
+}
+
+.intro-image-content small{
+    margin-top:5px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.intro-image-content i{
+    margin-top:25px;
+    font-size:42px;
+    opacity:.9;
+}
+
+.intro-content .section-badge{
     display:inline-flex;
     align-items:center;
     gap:7px;
@@ -334,105 +424,63 @@ a{
     letter-spacing:.7px;
 }
 
-.intro-content h2,
-.story-content h2{
-    margin-top:13px;
+.intro-content h2{
+    margin-top:14px;
     color:#102f91;
-    font-size:35px;
-    line-height:1.12;
+    font-size:34px;
     font-weight:900;
-    letter-spacing:-1.3px;
+    line-height:1.1;
+    letter-spacing:-1.2px;
 }
 
-.intro-content h2 span,
-.story-content h2 span{
+.intro-content h2 span{
     color:#f0208d;
 }
 
-.intro-content p,
-.story-content p{
-    margin-top:14px;
+.intro-content p{
+    margin-top:15px;
     color:#64748b;
     font-size:13px;
     line-height:1.8;
 }
 
-.intro-content p + p{
-    margin-top:10px;
+.intro-points{
+    margin-top:20px;
+    display:grid;
+    gap:11px;
 }
 
-.intro-image{
-    position:relative;
-    min-height:330px;
-    border-radius:26px;
-    overflow:hidden;
-    background:linear-gradient(135deg,#d7e0ff,#f4d9ec);
-    border:1px solid #c4d0ef;
-    box-shadow:0 18px 38px rgba(28,53,118,.13);
-}
-
-.intro-image:before{
-    content:"";
-    position:absolute;
-    width:190px;
-    height:190px;
-    top:-85px;
-    right:-55px;
-    border-radius:50%;
-    background:rgba(239,58,155,.17);
-}
-
-.intro-image:after{
-    content:"";
-    position:absolute;
-    width:170px;
-    height:170px;
-    bottom:-90px;
-    left:-65px;
-    border-radius:50%;
-    background:rgba(40,84,197,.17);
-}
-
-.intro-image-content{
-    position:absolute;
-    inset:0;
+.intro-point{
     display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    z-index:2;
+    align-items:flex-start;
+    gap:11px;
 }
 
-.intro-logo{
-    font-size:48px;
-    font-weight:900;
-    letter-spacing:-3px;
+.intro-point i{
+    width:28px;
+    height:28px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:#eef2ff;
+    color:#1747c7;
+    font-size:12px;
 }
 
-.intro-logo .pink{
-    color:#f0208d;
-}
-
-.intro-logo .blue{
-    color:#1557d6;
-}
-
-.intro-image-content p{
-    margin-top:7px;
-    color:#172033;
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:1px;
-    text-transform:uppercase;
+.intro-point span{
+    color:#475569;
+    font-size:12px;
+    line-height:1.6;
 }
 
 /* =========================================================
-   MISSION / VISION
+   MISSION & VISION
 ========================================================= */
 
 .mission-section{
-    padding:68px 70px;
-    background:linear-gradient(180deg,#f4edf6,#fff);
+    padding:70px;
+    background:linear-gradient(180deg,#f4eff7,#fff);
 }
 
 .section-header{
@@ -440,7 +488,7 @@ a{
     margin-bottom:38px;
 }
 
-.section-header .section-badge{
+.section-badge{
     display:inline-flex;
     align-items:center;
     gap:7px;
@@ -470,58 +518,80 @@ a{
     line-height:1.6;
 }
 
-.mission-grid{
+.mv-grid{
     max-width:1120px;
     margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:22px;
 }
 
-.mission-card{
-    padding:30px;
-    border-radius:21px;
-    border:1px solid #d6dce9;
+.mv-card{
+    position:relative;
+    overflow:hidden;
+
+    padding:32px;
+
+    border:1px solid #d9dff0;
+    border-radius:22px;
+
     background:#fff;
-    box-shadow:0 10px 25px rgba(28,53,118,.07);
+
+    box-shadow:0 12px 30px rgba(28,53,118,.08);
+
     transition:.25s;
 }
 
-.mission-card:hover{
+.mv-card:hover{
     transform:translateY(-6px);
     border-color:#b7c8ff;
-    box-shadow:0 18px 32px rgba(28,53,118,.12);
+    box-shadow:0 20px 38px rgba(28,53,118,.14);
 }
 
-.mission-icon{
-    width:54px;
-    height:54px;
+.mv-card:after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    right:-65px;
+    top:-70px;
+    border-radius:50%;
+    background:rgba(240,32,141,.07);
+}
+
+.mv-icon{
+    width:55px;
+    height:55px;
+
+    display:grid;
+    place-items:center;
+
     border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#e6ebff;
-    color:#1747c7;
+
+    background:linear-gradient(135deg,#1747c7,#3157d5);
+    color:#fff;
+
     font-size:22px;
-    margin-bottom:17px;
+
+    margin-bottom:18px;
 }
 
-.mission-card:nth-child(2) .mission-icon{
-    background:#ffe4f2;
-    color:#f0208d;
+.mv-card:nth-child(2) .mv-icon{
+    background:linear-gradient(135deg,#f0208d,#ff3b86);
 }
 
-.mission-card h3{
+.mv-card h3{
     color:#102f91;
-    font-size:19px;
+    font-size:20px;
     font-weight:900;
-    margin-bottom:9px;
+    margin-bottom:10px;
 }
 
-.mission-card p{
+.mv-card p{
     color:#64748b;
     font-size:12px;
-    line-height:1.7;
+    line-height:1.8;
 }
 
 /* =========================================================
@@ -529,68 +599,72 @@ a{
 ========================================================= */
 
 .services-section{
-    padding:68px 70px 75px;
-    background:#0b237f;
-}
-
-.services-section .section-header .section-badge{
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.16);
-    color:#fff;
-}
-
-.services-section .section-header h2{
-    color:#fff;
-}
-
-.services-section .section-header p{
-    color:rgba(255,255,255,.82);
+    padding:70px;
+    background:#fff;
 }
 
 .services-grid{
     max-width:1120px;
     margin:auto;
+
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:18px;
 }
 
 .service-card{
-    padding:27px 20px;
+    padding:25px 20px;
+
     text-align:center;
+
+    border:1px solid #e1d8e5;
     border-radius:18px;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(5px);
+
+    background:#fff;
+
+    box-shadow:0 8px 20px rgba(28,53,118,.06);
+
     transition:.25s;
 }
 
 .service-card:hover{
     transform:translateY(-6px);
-    background:rgba(255,255,255,.13);
+    border-color:#b7c8ff;
+    box-shadow:0 18px 32px rgba(28,53,118,.12);
 }
 
-.service-card i{
-    width:56px;
-    height:56px;
+.service-icon{
+    width:55px;
+    height:55px;
     margin:0 auto 15px;
+
+    display:grid;
+    place-items:center;
+
     border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,.12);
+
+    background:#eef2ff;
+    color:#1747c7;
+
+    font-size:22px;
+
+    transition:.25s;
+}
+
+.service-card:hover .service-icon{
+    background:linear-gradient(135deg,#1747c7,#f0208d);
     color:#fff;
-    font-size:23px;
 }
 
 .service-card h3{
-    color:#fff;
+    color:#172033;
     font-size:15px;
+    font-weight:800;
     margin-bottom:8px;
 }
 
 .service-card p{
-    color:rgba(255,255,255,.78);
+    color:#64748b;
     font-size:11px;
     line-height:1.6;
 }
@@ -600,51 +674,67 @@ a{
 ========================================================= */
 
 .why-section{
-    padding:70px;
-    background:#fff;
+    padding:65px 70px 75px;
+    background:linear-gradient(180deg,#0b237f,#16318f);
 }
 
-.why-container{
-    max-width:1120px;
-    margin:auto;
+.why-section .section-header h2{
+    color:#fff;
+}
+
+.why-section .section-header p{
+    color:rgba(255,255,255,.82);
+}
+
+.why-section .section-badge{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.16);
+    color:#fff;
 }
 
 .why-grid{
+    max-width:1120px;
+    margin:auto;
+
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
 
 .why-card{
-    padding:27px 22px;
-    border-radius:18px;
-    background:#faf8fb;
-    border:1px solid #e4dce7;
+    padding:28px 22px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(6px);
+
     transition:.25s;
 }
 
 .why-card:hover{
-    transform:translateY(-5px);
-    border-color:#b7c8ff;
-    box-shadow:0 14px 27px rgba(28,53,118,.09);
+    transform:translateY(-6px);
+    background:rgba(255,255,255,.13);
 }
 
-.why-number{
-    color:#f0208d;
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:1px;
+.why-card i{
+    font-size:25px;
+    color:#fff;
+    margin-bottom:13px;
 }
 
 .why-card h3{
-    margin:8px 0 8px;
-    color:#102f91;
-    font-size:16px;
-    font-weight:900;
+    color:#fff;
+    font-size:15px;
+    margin-bottom:8px;
 }
 
 .why-card p{
-    color:#64748b;
+    color:rgba(255,255,255,.78);
     font-size:11px;
     line-height:1.7;
 }
@@ -654,104 +744,97 @@ a{
 ========================================================= */
 
 .cta-section{
-    padding:12px 70px 70px;
-    background:#fff;
+    padding:65px 70px;
+    background:#f1eaf5;
 }
 
 .cta-card{
     position:relative;
     overflow:hidden;
+
     max-width:1120px;
-    min-height:210px;
     margin:auto;
-    padding:38px 42px;
+
+    padding:42px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:30px;
+
     border:1px solid #b7c8ff;
     border-radius:26px;
-    background:linear-gradient(
-        115deg,
-        #e8eeff,
-        #f8ebf4
-    );
-    box-shadow:0 15px 35px rgba(40,84,197,.18);
-}
 
-.cta-card:before{
-    content:"";
-    position:absolute;
-    width:210px;
-    height:210px;
-    right:-70px;
-    bottom:-115px;
-    border-radius:50%;
-    background:rgba(40,84,197,.12);
+    background:
+        linear-gradient(
+            115deg,
+            #e8eeff,
+            #f8ebf4
+        );
+
+    box-shadow:0 15px 35px rgba(40,84,197,.18);
 }
 
 .cta-card:after{
     content:"";
     position:absolute;
-    width:160px;
-    height:160px;
-    right:100px;
-    top:-95px;
+
+    width:220px;
+    height:220px;
+
+    right:-90px;
+    top:-110px;
+
     border-radius:50%;
-    background:rgba(239,58,155,.12);
+
+    background:rgba(240,32,141,.10);
 }
 
 .cta-content{
     position:relative;
     z-index:2;
-    max-width:730px;
-}
-
-.cta-content .section-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:7px 14px;
-    border-radius:999px;
-    background:rgba(255,255,255,.8);
-    border:1px solid #b7c8ff;
-    color:#1747c7;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:.7px;
-    margin-bottom:12px;
 }
 
 .cta-content h2{
+    margin-top:12px;
     color:#102f91;
-    font-size:28px;
-    line-height:1.2;
+    font-size:29px;
     font-weight:900;
-    margin-bottom:8px;
 }
 
 .cta-content p{
+    margin-top:8px;
     color:#64748b;
-    font-size:13px;
+    font-size:12px;
     line-height:1.6;
 }
 
 .cta-button{
     position:relative;
     z-index:2;
+
     flex-shrink:0;
+
     display:inline-flex;
     align-items:center;
     justify-content:center;
     gap:9px;
-    min-width:205px;
+
+    min-width:200px;
+
     padding:14px 22px;
+
     border-radius:13px;
+
     background:linear-gradient(135deg,#1747c7,#3157d5);
+
     color:#fff;
+
     font-size:12px;
     font-weight:800;
-    box-shadow:0 12px 25px rgba(40,84,197,.25);
+
+    box-shadow:0 12px 25px rgba(40,84,197,.22);
+
     transition:.25s;
 }
 
@@ -769,6 +852,7 @@ a{
     right:22px;
     bottom:22px;
     z-index:2500;
+
     display:flex;
     flex-direction:column;
     align-items:flex-end;
@@ -777,24 +861,30 @@ a{
 
 .float-whatsapp,
 .float-top{
-    font-family:'Plus Jakarta Sans',sans-serif;
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-decoration:none;
     cursor:pointer;
+
     transition:.25s;
+
     box-shadow:0 12px 28px rgba(15,23,42,.16);
 }
 
 .float-whatsapp{
     height:52px;
     padding:0 21px;
+
     border:0;
     border-radius:999px;
+
     background:#20d466;
     color:#fff;
+
     gap:10px;
+
     font-size:14px;
     font-weight:800;
 }
@@ -810,11 +900,15 @@ a{
 .float-top{
     width:40px;
     height:40px;
+
     border:0;
     border-radius:50%;
+
     background:#1747c7;
     color:#fff;
+
     font-size:14px;
+
     opacity:0;
     visibility:hidden;
     transform:translateY(10px);
@@ -844,6 +938,7 @@ a{
     display:grid;
     grid-template-columns:1.5fr 1fr 1fr;
     gap:35px;
+
     max-width:1120px;
     margin:auto;
 }
@@ -882,45 +977,17 @@ a{
     max-width:1120px;
     margin:25px auto 0;
     padding-top:15px;
+
     border-top:1px solid rgba(255,255,255,.14);
+
     text-align:center;
+
     color:rgba(255,255,255,.6);
     font-size:10px;
 }
 
 /* =========================================================
-   SWEETALERT
-========================================================= */
-
-.logout-popup{
-    border-radius:18px !important;
-    padding:28px !important;
-}
-
-.logout-title{
-    color:#102f91 !important;
-    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
-    font-size:24px !important;
-    font-weight:800 !important;
-}
-
-.logout-text{
-    color:#64748b !important;
-    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
-    font-size:13px !important;
-}
-
-.logout-confirm,
-.logout-cancel{
-    border-radius:10px !important;
-    padding:10px 18px !important;
-    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
-    font-size:12px !important;
-    font-weight:800 !important;
-}
-
-/* =========================================================
-   TABLET
+   RESPONSIVE
 ========================================================= */
 
 @media(max-width:1100px){
@@ -935,20 +1002,12 @@ a{
 
     .about-hero-content{
         padding-left:45px;
+        padding-right:45px;
     }
 
     .intro-section,
     .mission-section,
-    .why-section{
-        padding-left:40px;
-        padding-right:40px;
-    }
-
-    .services-section{
-        padding-left:40px;
-        padding-right:40px;
-    }
-
+    .services-section,
     .cta-section{
         padding-left:40px;
         padding-right:40px;
@@ -957,15 +1016,7 @@ a{
     .services-grid{
         grid-template-columns:repeat(2,1fr);
     }
-
-    .why-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
 }
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media(max-width:760px){
 
@@ -998,10 +1049,13 @@ a{
         display:none;
         order:4;
         width:100%;
+
         padding:12px 0 3px;
+
         flex-direction:column;
         align-items:center;
         gap:14px;
+
         border-top:1px solid #eef1f6;
     }
 
@@ -1017,7 +1071,6 @@ a{
         width:40px;
         height:40px;
         padding:0;
-        justify-content:center;
     }
 
     .icon-btn{
@@ -1025,12 +1078,14 @@ a{
         height:40px;
     }
 
+    /* Hero */
+
     .about-hero{
-        min-height:390px;
+        min-height:430px;
     }
 
     .about-hero-content{
-        padding:50px 24px;
+        padding:55px 24px;
     }
 
     .about-hero h1{
@@ -1039,65 +1094,77 @@ a{
     }
 
     .about-hero p{
-        max-width:370px;
+        max-width:380px;
     }
+
+    /* Intro */
 
     .intro-section{
         padding:55px 20px;
     }
 
-    .intro-container{
+    .intro-wrapper{
         grid-template-columns:1fr;
         gap:35px;
     }
 
-    .intro-content h2,
-    .story-content h2{
-        font-size:29px;
+    .intro-image{
+        min-height:280px;
     }
 
-    .intro-image{
-        min-height:260px;
+    .intro-content h2{
+        font-size:28px;
     }
+
+    /* Mission */
 
     .mission-section{
         padding:55px 20px;
     }
 
-    .section-header h2{
-        font-size:29px;
-    }
-
-    .mission-grid{
+    .mv-grid{
         grid-template-columns:1fr;
     }
 
+    .section-header h2{
+        font-size:28px;
+    }
+
+    /* Services */
+
     .services-section{
-        padding:55px 20px 60px;
+        padding:55px 20px;
     }
 
     .services-grid{
-        grid-template-columns:1fr;
-        gap:14px;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
     }
 
+    .service-card{
+        padding:22px 14px;
+    }
+
+    /* Why */
+
     .why-section{
-        padding:55px 20px;
+        padding:55px 20px 65px;
     }
 
     .why-grid{
         grid-template-columns:1fr;
     }
 
+    /* CTA */
+
     .cta-section{
-        padding:10px 20px 55px;
+        padding:15px 20px 50px;
     }
 
     .cta-card{
         flex-direction:column;
         align-items:flex-start;
         padding:30px 24px;
-        min-height:auto;
     }
 
     .cta-content h2{
@@ -1106,8 +1173,9 @@ a{
 
     .cta-button{
         width:100%;
-        min-width:0;
     }
+
+    /* Floating */
 
     .floating-actions{
         right:12px;
@@ -1120,9 +1188,7 @@ a{
         font-size:12px;
     }
 
-    .site-footer{
-        padding:35px 20px;
-    }
+    /* Footer */
 
     .footer-grid{
         grid-template-columns:1fr 1fr;
@@ -1132,11 +1198,11 @@ a{
     .footer-brand-wrap{
         grid-column:1/-1;
     }
-}
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+    .site-footer{
+        padding:35px 20px;
+    }
+}
 
 @media(max-width:430px){
 
@@ -1144,17 +1210,16 @@ a{
         font-size:35px;
     }
 
-    .intro-content h2,
-    .story-content h2{
-        font-size:27px;
+    .intro-logo{
+        font-size:42px;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
     }
 
     .footer-grid{
         grid-template-columns:1fr;
-    }
-
-    .footer-brand-wrap{
-        grid-column:auto;
     }
 }
 </style>
@@ -1171,9 +1236,7 @@ a{
 <nav class="navbar">
 
     <a class="nav-logo" href="home.php" title="Back to Home">
-
         <div class="logo-text">
-
             <span class="logo-title">
                 <span class="logo-sa">SA</span>
                 <span class="logo-design">DESIGN</span>
@@ -1182,40 +1245,26 @@ a{
             <span class="logo-subtitle">
                 PRINTING &amp; ADVERTISING
             </span>
-
         </div>
-
     </a>
 
-
     <ul class="nav-links" id="mainNav">
-
         <li>
-            <a href="home.php">
-                Home
-            </a>
+            <a href="home.php">Home</a>
         </li>
 
         <li>
-            <a href="home.php#products-section">
-                Product
-            </a>
+            <a href="home.php#products-section">Product</a>
         </li>
 
         <li>
-            <a href="about.php" class="active">
-                About Us
-            </a>
+            <a href="about.php" class="active">About Us</a>
         </li>
 
         <li>
-            <a href="custom_request.php">
-                Custom Request
-            </a>
+            <a href="custom_request.php">Custom Request</a>
         </li>
-
     </ul>
-
 
     <div class="nav-icons">
 
@@ -1224,54 +1273,47 @@ a{
             $_SESSION['is_logged_in'] === true
         ): ?>
 
-            <a
-                href="cust_profile.php"
-                class="login-pill"
-                title="My profile"
-            >
+            <a href="cust_profile.php"
+               class="login-pill"
+               title="My profile">
+
                 <i class="fa-regular fa-user"></i>
                 <span>Profile</span>
-            </a>
 
+            </a>
 
             <button
                 type="button"
                 class="login-pill logout-pill"
                 title="Log out"
-                onclick="confirmLogout()"
-            >
+                onclick="confirmLogout()">
+
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>Log out</span>
+
             </button>
 
         <?php else: ?>
 
-            <a
-                href="index.php"
-                class="login-pill"
-                title="Login"
-            >
+            <a href="index.php"
+               class="login-pill"
+               title="Login">
+
                 <i class="fa-regular fa-user"></i>
                 <span>Login</span>
+
             </a>
 
         <?php endif; ?>
 
-
-        <a
-            href="cart.php"
-            class="icon-btn"
-            title="Cart"
-            id="cartBtn"
-            aria-label="Shopping cart"
-        >
+        <a href="cart.php"
+           class="icon-btn"
+           title="Cart"
+           aria-label="Shopping cart">
 
             <i class="fa-solid fa-bag-shopping"></i>
 
-            <span
-                class="cart-badge"
-                id="cartBadgeCount"
-            >
+            <span class="cart-badge">
                 <?= $total_cart_count ?>
             </span>
 
@@ -1279,43 +1321,43 @@ a{
 
     </div>
 
-
     <button
         type="button"
         class="menu-toggle"
         id="menuToggle"
         aria-label="Open menu"
-        aria-expanded="false"
-    >
+        aria-expanded="false">
+
         <i class="fa-solid fa-bars"></i>
+
     </button>
 
 </nav>
 
 
 <!-- =====================================================
-     HERO
+     ABOUT HERO
 ===================================================== -->
 
 <section class="about-hero">
 
     <div class="about-hero-content">
 
-        <span class="hero-badge">
-            <i class="fa-solid fa-circle-info"></i>
+        <span class="about-badge">
+            <i class="fa-solid fa-building"></i>
             ABOUT SA DESIGN
         </span>
 
         <h1>
-            Turning Ideas<br>
-            Into <span>Print.</span>
+            We Turn Ideas<br>
+            Into <span>Reality.</span>
         </h1>
 
         <p>
-            SA Design is a printing and advertising service that helps
-            businesses, organisations, schools and individuals bring
-            their ideas to life through quality printing and creative
-            visual solutions.
+            SA Design is a printing and advertising service provider
+            dedicated to transforming creative ideas into high-quality
+            printed products for businesses, events, schools and
+            personal projects.
         </p>
 
     </div>
@@ -1329,54 +1371,77 @@ a{
 
 <section class="intro-section">
 
-    <div class="intro-container">
-
-        <div class="intro-content">
-
-            <span class="section-badge">
-                <i class="fa-solid fa-building"></i>
-                WHO WE ARE
-            </span>
-
-            <h2>
-                Your Ideas.<br>
-                Our <span>Print.</span>
-            </h2>
-
-            <p>
-                SA Design provides printing and advertising solutions
-                for customers who need reliable, attractive and
-                high-quality printed materials.
-            </p>
-
-            <p>
-                From business stationery and promotional materials
-                to event printing, apparel and custom requests,
-                we aim to make the printing process simple and
-                convenient for our customers.
-            </p>
-
-            <p>
-                Our platform also allows customers to explore
-                products, submit custom requests and manage their
-                orders in a more organised way.
-            </p>
-
-        </div>
-
+    <div class="intro-wrapper">
 
         <div class="intro-image">
 
             <div class="intro-image-content">
 
                 <div class="intro-logo">
-                    <span class="pink">SA</span>
-                    <span class="blue">DESIGN</span>
+                    <span>SA</span> DESIGN
                 </div>
 
-                <p>
+                <small>
                     Printing &amp; Advertising
-                </p>
+                </small>
+
+                <i class="fa-solid fa-print"></i>
+
+            </div>
+
+        </div>
+
+
+        <div class="intro-content">
+
+            <span class="section-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                WHO WE ARE
+            </span>
+
+            <h2>
+                Your Ideas.<br>
+                Our <span>Printing.</span>
+            </h2>
+
+            <p>
+                SA Design provides printing and advertising solutions
+                designed to help customers bring their ideas to life.
+                From everyday stationery and promotional materials
+                to event printing and customised products, we aim to
+                make the printing process easier and more convenient.
+            </p>
+
+            <p>
+                Our platform allows customers to explore products,
+                understand available options and submit custom requests
+                through a more organised digital experience.
+            </p>
+
+            <div class="intro-points">
+
+                <div class="intro-point">
+                    <i class="fa-solid fa-check"></i>
+                    <span>
+                        Quality printing materials and professional
+                        finishing.
+                    </span>
+                </div>
+
+                <div class="intro-point">
+                    <i class="fa-solid fa-check"></i>
+                    <span>
+                        Printing solutions for business, events,
+                        school and personal needs.
+                    </span>
+                </div>
+
+                <div class="intro-point">
+                    <i class="fa-solid fa-check"></i>
+                    <span>
+                        Simple and convenient ordering experience.
+                    </span>
+                </div>
 
             </div>
 
@@ -1405,18 +1470,18 @@ a{
         </h2>
 
         <p>
-            We focus on quality, convenience and creative printing
-            solutions that support our customers' needs.
+            We focus on delivering reliable printing services while
+            continuously improving the customer experience.
         </p>
 
     </div>
 
 
-    <div class="mission-grid">
+    <div class="mv-grid">
 
-        <div class="mission-card">
+        <div class="mv-card">
 
-            <div class="mission-icon">
+            <div class="mv-icon">
                 <i class="fa-solid fa-bullseye"></i>
             </div>
 
@@ -1425,17 +1490,15 @@ a{
             </h3>
 
             <p>
-                To provide quality, affordable and reliable printing
-                and advertising solutions while making the ordering
-                process easier and more convenient for every customer.
+                Establishing SA DESIGN as the leading printing center in Muadzam Shah and creating job opportunities for the youth of Muadzam Shah.
             </p>
 
         </div>
 
 
-        <div class="mission-card">
+        <div class="mv-card">
 
-            <div class="mission-icon">
+            <div class="mv-icon">
                 <i class="fa-solid fa-eye"></i>
             </div>
 
@@ -1444,9 +1507,7 @@ a{
             </h3>
 
             <p>
-                To become a trusted printing and advertising service
-                that combines creativity, technology and excellent
-                customer service to deliver better printing experiences.
+                To become the leading provider of printing materials in Rompin by 2030.
             </p>
 
         </div>
@@ -1457,7 +1518,7 @@ a{
 
 
 <!-- =====================================================
-     OUR SERVICES
+     SERVICES
 ===================================================== -->
 
 <section class="services-section">
@@ -1465,7 +1526,7 @@ a{
     <div class="section-header">
 
         <span class="section-badge">
-            <i class="fa-solid fa-print"></i>
+            <i class="fa-solid fa-layer-group"></i>
             WHAT WE OFFER
         </span>
 
@@ -1474,8 +1535,8 @@ a{
         </h2>
 
         <p>
-            Explore a range of printing and advertising products
-            suitable for different purposes.
+            A range of products and services to support different
+            printing and advertising needs.
         </p>
 
     </div>
@@ -1485,15 +1546,17 @@ a{
 
         <div class="service-card">
 
-            <i class="fa-solid fa-stamp"></i>
+            <div class="service-icon">
+                <i class="fa-solid fa-stamp"></i>
+            </div>
 
             <h3>
-                Custom Stamps
+                Stationery
             </h3>
 
             <p>
-                Self-inking stamps suitable for business,
-                stationery and personal use.
+                Custom stamps and essential stationery
+                for everyday business use.
             </p>
 
         </div>
@@ -1501,15 +1564,17 @@ a{
 
         <div class="service-card">
 
-            <i class="fa-solid fa-shirt"></i>
+            <div class="service-icon">
+                <i class="fa-solid fa-shirt"></i>
+            </div>
 
             <h3>
                 Custom Apparel
             </h3>
 
             <p>
-                Sublimation shirts and apparel for teams,
-                events, organisations and personal projects.
+                Custom sublimation shirts suitable for
+                teams, events and organisations.
             </p>
 
         </div>
@@ -1517,15 +1582,17 @@ a{
 
         <div class="service-card">
 
-            <i class="fa-solid fa-panorama"></i>
+            <div class="service-icon">
+                <i class="fa-solid fa-panorama"></i>
+            </div>
 
             <h3>
-                Banner &amp; Bunting
+                Large Format
             </h3>
 
             <p>
-                Large-format printing for promotions,
-                events, businesses and special occasions.
+                Banners and bunting for promotions,
+                events and outdoor advertising.
             </p>
 
         </div>
@@ -1533,15 +1600,89 @@ a{
 
         <div class="service-card">
 
-            <i class="fa-solid fa-id-card"></i>
+            <div class="service-icon">
+                <i class="fa-solid fa-id-card"></i>
+            </div>
 
             <h3>
-                Cards &amp; Stickers
+                Cards
             </h3>
 
             <p>
-                Professional name cards, wedding cards,
-                product stickers and promotional materials.
+                Professional business cards and
+                elegant wedding cards.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-flag"></i>
+            </div>
+
+            <h3>
+                Windflag
+            </h3>
+
+            <p>
+                Eye-catching outdoor promotional
+                flags for businesses and events.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-tags"></i>
+            </div>
+
+            <h3>
+                Stickers
+            </h3>
+
+            <p>
+                Custom product stickers and labels
+                for branding and packaging.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+
+            <h3>
+                Custom Design
+            </h3>
+
+            <p>
+                Custom printing requests based on
+                your own ideas and requirements.
+            </p>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+
+            <h3>
+                Advertising
+            </h3>
+
+            <p>
+                Promotional materials that help
+                businesses stand out and reach customers.
             </p>
 
         </div>
@@ -1552,144 +1693,124 @@ a{
 
 
 <!-- =====================================================
-     WHY SA DESIGN
+     WHY CHOOSE SA DESIGN
 ===================================================== -->
 
 <section class="why-section">
 
-    <div class="why-container">
+    <div class="section-header">
 
-        <div class="section-header">
+        <span class="section-badge">
+            <i class="fa-solid fa-star"></i>
+            WHY SA DESIGN
+        </span>
 
-            <span class="section-badge">
-                <i class="fa-solid fa-sparkles"></i>
-                WHY SA DESIGN
-            </span>
+        <h2>
+            Why Customers Choose Us
+        </h2>
 
-            <h2>
-                Designed Around You
-            </h2>
+        <p>
+            We combine quality, convenience and customer-focused
+            service to deliver a better printing experience.
+        </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-gem"></i>
+
+            <h3>
+                Premium Quality
+            </h3>
 
             <p>
-                We want every customer to have a simple,
-                convenient and reliable printing experience.
+                We focus on quality materials and reliable
+                printing results for every order.
             </p>
 
         </div>
 
 
-        <div class="why-grid">
+        <div class="why-card">
 
-            <div class="why-card">
+            <i class="fa-solid fa-bolt"></i>
 
-                <div class="why-number">
-                    01
-                </div>
+            <h3>
+                Fast &amp; Efficient
+            </h3>
 
-                <h3>
-                    Quality Materials
-                </h3>
+            <p>
+                Our organised process helps make ordering
+                and managing print requests easier.
+            </p>
 
-                <p>
-                    We focus on using suitable materials and
-                    reliable printing processes to produce
-                    professional-looking results.
-                </p>
-
-            </div>
+        </div>
 
 
-            <div class="why-card">
+        <div class="why-card">
 
-                <div class="why-number">
-                    02
-                </div>
+            <i class="fa-solid fa-comments"></i>
 
-                <h3>
-                    Easy Ordering
-                </h3>
+            <h3>
+                Friendly Support
+            </h3>
 
-                <p>
-                    Customers can browse products, select their
-                    preferred options and submit requests through
-                    a more organised online platform.
-                </p>
+            <p>
+                Customers can communicate their requirements
+                and receive assistance when needed.
+            </p>
 
-            </div>
+        </div>
 
 
-            <div class="why-card">
+        <div class="why-card">
 
-                <div class="why-number">
-                    03
-                </div>
+            <i class="fa-solid fa-wallet"></i>
 
-                <h3>
-                    Customer Support
-                </h3>
+            <h3>
+                Affordable
+            </h3>
 
-                <p>
-                    We provide friendly assistance to help customers
-                    choose suitable printing products and services.
-                </p>
+            <p>
+                Competitive pricing makes our printing
+                solutions suitable for different budgets.
+            </p>
 
-            </div>
+        </div>
 
 
-            <div class="why-card">
+        <div class="why-card">
 
-                <div class="why-number">
-                    04
-                </div>
+            <i class="fa-solid fa-laptop"></i>
 
-                <h3>
-                    Flexible Solutions
-                </h3>
+            <h3>
+                Digital Convenience
+            </h3>
 
-                <p>
-                    From standard products to custom requests,
-                    we provide printing options for different
-                    customer needs.
-                </p>
+            <p>
+                Customers can explore products and requests
+                through a convenient online platform.
+            </p>
 
-            </div>
+        </div>
 
 
-            <div class="why-card">
+        <div class="why-card">
 
-                <div class="why-number">
-                    05
-                </div>
+            <i class="fa-solid fa-lightbulb"></i>
 
-                <h3>
-                    Competitive Pricing
-                </h3>
+            <h3>
+                Creative Solutions
+            </h3>
 
-                <p>
-                    Our products are offered at competitive prices
-                    while maintaining a strong focus on quality.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="why-number">
-                    06
-                </div>
-
-                <h3>
-                    Creative Approach
-                </h3>
-
-                <p>
-                    We help transform simple ideas into attractive
-                    printed materials that can represent your
-                    business, event or personal project.
-                </p>
-
-            </div>
+            <p>
+                We support different ideas and requirements
+                through customised printing solutions.
+            </p>
 
         </div>
 
@@ -1699,7 +1820,7 @@ a{
 
 
 <!-- =====================================================
-     CALL TO ACTION
+     CTA
 ===================================================== -->
 
 <section class="cta-section">
@@ -1709,29 +1830,28 @@ a{
         <div class="cta-content">
 
             <span class="section-badge">
-                <i class="fa-solid fa-palette"></i>
-                READY TO CREATE?
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                HAVE AN IDEA?
             </span>
 
             <h2>
-                Have something special in mind?
+                Let's Turn Your Idea Into Print.
             </h2>
 
             <p>
-                Tell us what you need and submit a custom request.
-                Let's turn your idea into something you can print,
-                use and share.
+                Have a special design, bulk order or unique
+                printing requirement? Send us your request
+                and let us help bring your idea to life.
             </p>
 
         </div>
 
+        <a href="custom_request.php"
+           class="cta-button">
 
-        <a
-            href="custom_request.php"
-            class="cta-button"
-        >
             <i class="fa-solid fa-pen-ruler"></i>
             Start Custom Request
+
         </a>
 
     </div>
@@ -1742,23 +1862,20 @@ a{
 
 
 <!-- =====================================================
-     FLOATING ACTIONS
+     FLOATING WHATSAPP / BACK TO TOP
 ===================================================== -->
 
-<div
-    class="floating-actions"
-    aria-label="Quick actions"
->
+<div class="floating-actions">
 
-    <a
-        href="https://wa.me/60194184147"
-        target="_blank"
-        rel="noopener"
-        class="float-whatsapp"
-        title="Chat with us"
-    >
+    <a href="https://wa.me/60194184147"
+       target="_blank"
+       rel="noopener"
+       class="float-whatsapp"
+       title="Chat with us">
+
         <i class="fa-brands fa-whatsapp"></i>
         Chat with us
+
     </a>
 
 
@@ -1767,9 +1884,10 @@ a{
         class="float-top"
         id="backToTop"
         title="Back to top"
-        aria-label="Back to top"
-    >
+        aria-label="Back to top">
+
         <i class="fa-solid fa-arrow-up"></i>
+
     </button>
 
 </div>
@@ -1832,12 +1950,12 @@ a{
                 CONTACT
             </h4>
 
-            <a
-                href="https://wa.me/60194184147"
-                target="_blank"
-                rel="noopener"
-            >
+            <a href="https://wa.me/60194184147"
+               target="_blank"
+               rel="noopener">
+
                 WhatsApp Us
+
             </a>
 
             <a href="custom_request.php">
@@ -1858,9 +1976,51 @@ a{
 
 <script>
 
-/* =========================================================
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuToggle = document.getElementById('menuToggle');
+const navbar = document.querySelector('.navbar');
+
+menuToggle.addEventListener('click', () => {
+
+    const open = navbar.classList.toggle('menu-open');
+
+    menuToggle.setAttribute(
+        'aria-expanded',
+        open ? 'true' : 'false'
+    );
+
+    menuToggle.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+
+});
+
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+
+    link.addEventListener('click', () => {
+
+        navbar.classList.remove('menu-open');
+
+        menuToggle.setAttribute(
+            'aria-expanded',
+            'false'
+        );
+
+        menuToggle.innerHTML =
+            '<i class="fa-solid fa-bars"></i>';
+
+    });
+
+});
+
+
+/* =====================================================
    LOGOUT CONFIRMATION
-========================================================= */
+===================================================== */
 
 function confirmLogout(){
 
@@ -1894,7 +2054,7 @@ function confirmLogout(){
             cancelButton:'logout-cancel'
         }
 
-    }).then((result)=>{
+    }).then((result) => {
 
         if(result.isConfirmed){
 
@@ -1907,81 +2067,24 @@ function confirmLogout(){
 }
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-const menuToggle =
-    document.getElementById('menuToggle');
-
-const navbar =
-    document.querySelector('.navbar');
-
-
-menuToggle.addEventListener('click',()=>{
-
-    const open =
-        navbar.classList.toggle('menu-open');
-
-    menuToggle.setAttribute(
-        'aria-expanded',
-        open ? 'true' : 'false'
-    );
-
-    menuToggle.innerHTML = open
-
-        ? '<i class="fa-solid fa-xmark"></i>'
-
-        : '<i class="fa-solid fa-bars"></i>';
-
-});
-
-
-document
-    .querySelectorAll('.nav-links a')
-    .forEach(link=>{
-
-        link.addEventListener('click',()=>{
-
-            navbar.classList.remove('menu-open');
-
-            menuToggle.setAttribute(
-                'aria-expanded',
-                'false'
-            );
-
-            menuToggle.innerHTML =
-                '<i class="fa-solid fa-bars"></i>';
-
-        });
-
-    });
-
-
-/* =========================================================
+/* =====================================================
    BACK TO TOP
-========================================================= */
+===================================================== */
 
 const backToTop =
     document.getElementById('backToTop');
 
+window.addEventListener('scroll', () => {
 
-window.addEventListener('scroll',()=>{
-
-    if(window.scrollY > 450){
-
-        backToTop.classList.add('show');
-
-    }else{
-
-        backToTop.classList.remove('show');
-
-    }
+    backToTop.classList.toggle(
+        'show',
+        window.scrollY > 400
+    );
 
 });
 
 
-backToTop.addEventListener('click',()=>{
+backToTop.addEventListener('click', () => {
 
     window.scrollTo({
         top:0,
@@ -1991,6 +2094,40 @@ backToTop.addEventListener('click',()=>{
 });
 
 </script>
+
+
+<style>
+
+/* SweetAlert Logout Style */
+
+.logout-popup{
+    border-radius:18px !important;
+    padding:28px !important;
+}
+
+.logout-title{
+    color:#102f91 !important;
+    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
+    font-size:24px !important;
+    font-weight:800 !important;
+}
+
+.logout-text{
+    color:#64748b !important;
+    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
+    font-size:13px !important;
+}
+
+.logout-confirm,
+.logout-cancel{
+    border-radius:10px !important;
+    padding:10px 18px !important;
+    font-family:'Plus Jakarta Sans',Arial,sans-serif !important;
+    font-size:12px !important;
+    font-weight:800 !important;
+}
+
+</style>
 
 </body>
 </html>
