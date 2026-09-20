@@ -1,0 +1,253 @@
+/* Shared SA Design interface foundations. Page-specific layouts stay in each page. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+:root { --sa-blue:#1557d6; --sa-deep-blue:#102f91; --sa-pink:#f0208d; --sa-ink:#172033; --sa-muted:#64748b; --sa-line:#e2e7f1; --sa-surface:#f6e8f2; --sa-button-radius:12px; }
+html { scroll-behavior:smooth; }
+/* Plus Jakarta Sans is the single typeface used throughout SA Design. */
+body, button, input, select, textarea { font-family:'Plus Jakarta Sans', Arial, sans-serif; }
+button, a, input, select, textarea { -webkit-tap-highlight-color:transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(21,87,214,.35); outline-offset:3px; }
+::selection { background:#ffd1e7; color:var(--sa-ink); }
+
+/* One shape for every text/action button across customer and admin screens. */
+:is(
+  .btn, .btn-primary, .btn-secondary, .btn-add-cart, .btn-buy-now, .btn-banner,
+  .btn-view, .back-btn, .add-cart-btn, .finder-view-btn, .primary, .primary-btn,
+  .secondary, .submit, .save-btn, .cancel-btn, .accordion-header, .nav-btn, .logout-btn,
+  .confirm-btn, .checkout-btn, .apply-btn, .cta-button, .auth-popup-btn,
+  .forgot-cancel-btn, .forgot-submit-btn, .login-pill, .login-required-button,
+  .review-submit, .receipt-btn, .receipt-action, .studio-login, .tool
+) { border-radius:var(--sa-button-radius) !important; }
+
+/* Icon controls and product/colour pickers deliberately stay circular or card-shaped. */
+:is(.icon-btn, .cart-btn, .studio-cart, .color,
+  .qty-btn, .remove-btn, .nav-arrow, .float-top, .login-required-close,
+  .receipt-close, .form-password-toggle) { border-radius:50%; }
+
+/* Shared storefront footer for pages that need the standard site close. */
+.sa-footer { padding:38px 70px; background:#0b1d69; color:#fff; }
+.sa-footer-grid { width:min(1120px,100%); margin:auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:35px; }
+.sa-footer-brand { font-size:24px; font-weight:900; }.sa-footer-brand span { color:var(--sa-pink); }
+.sa-footer h4 { margin-bottom:10px; font-size:12px; }.sa-footer p,.sa-footer a { color:rgba(255,255,255,.72); font-size:11px; line-height:1.7; }.sa-footer a { display:block; margin-bottom:4px; text-decoration:none; }.sa-footer a:hover { color:#fff; }
+.sa-footer-line { width:min(1120px,100%); margin:24px auto 0; padding-top:14px; border-top:1px solid rgba(255,255,255,.14); text-align:center; color:rgba(255,255,255,.58); font-size:10px; }
+@media(max-width:760px) { .sa-footer { padding:35px 20px; }.sa-footer-grid { grid-template-columns:1fr; gap:24px; } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+
+/* Final visual polish shared by every customer-facing page. */
+body { text-rendering:optimizeLegibility; }
+img { image-rendering:auto; }
+.navbar, .studio-navbar { box-shadow:0 8px 24px rgba(17,31,80,.05); }
+:is(.product-card, .about-card, .smart-finder-card, .price-card, .promo-info-card,
+    .reviews-card, .summary-card, .cart-section, .custom-card, .order-card, .card) {
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+:is(.product-card, .about-card, .price-card, .promo-info-card, .reviews-card,
+    .custom-card, .order-card):hover {
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(28,53,118,.12);
+}
+:is(.product-img-box, .gallery-container, .item-img) img {
+  transition:transform .35s ease;
+}
+:is(.product-card, .gallery-container, .item-img):hover img {
+  transform:scale(1.04);
+}
+:is(.btn-primary, .btn-add-cart, .btn-buy-now, .checkout-btn, .confirm-btn,
+    .primary-btn, .submit, .cta-button):hover {
+  transform:translateY(-2px);
+  filter:saturate(1.08);
+}
+:is(.container, .account-wrap, .product-detail-section) {
+  animation:sa-page-enter .45s ease both;
+}
+@keyframes sa-page-enter {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (max-width:900px) {
+  :is(.navbar, .studio-navbar) { padding-left:28px; padding-right:28px; }
+  :is(.hero-copy, .about-section, .smart-finder-section) { padding-left:28px; padding-right:28px; }
+}
+@media (max-width:520px) {
+  :is(.navbar, .studio-navbar) { padding-left:18px; padding-right:18px; }
+  :is(.hero-actions, .btn-group) { width:100%; }
+  :is(.hero-actions, .btn-group) > :is(a, button) { flex:1 1 100%; }
+}
+.wishlist-product-btn { display:inline-flex; align-items:center; gap:7px; padding:7px 11px; border:1px solid #f6b5d6; border-radius:999px; background:#fff7fb; color:#d51b79; font-size:11px; font-weight:800; text-decoration:none; }
+.wishlist-product-btn:hover, .wishlist-product-btn.active { background:#f0208d; border-color:#f0208d; color:#fff; }
+.loyalty-card { display:flex; align-items:center; gap:14px; margin-bottom:20px; padding:16px 20px; background:linear-gradient(120deg,#fff8fc,#f1f6ff); }
+.loyalty-card > i { display:grid; place-items:center; width:42px; height:42px; border-radius:50%; background:#f0208d; color:#fff; }
+.loyalty-card strong { color:#102f91; font-size:15px; }.loyalty-card p { margin-top:4px; color:#64748b; font-size:11px; }
+.review-upload { display:flex; align-items:center; gap:8px; margin-top:12px; color:#1747c7; font-size:11px; font-weight:800; cursor:pointer; }
+.review-upload input { font-size:11px; font-weight:500; }
+.review-photo { display:block; width:min(220px,100%); max-height:220px; object-fit:cover; margin-top:12px; border-radius:12px; border:1px solid #e2e7f1; }
+
+/* Shared page rhythm and form treatment keep every customer surface familiar. */
+body { background:var(--sa-surface); color:var(--sa-ink); }
+:is(input, select, textarea) { border-color:var(--sa-line); border-radius:var(--sa-button-radius); transition:border-color .2s, box-shadow .2s; }
+:is(input, select, textarea):focus { border-color:var(--sa-blue); box-shadow:0 0 0 3px rgba(21,87,214,.1); outline:0; }
+:is(button, .btn, .btn-primary, .btn-secondary, .btn-view, .primary-btn, .submit, .checkout-btn, .confirm-btn, .save-btn) {
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+:is(.container, .account-wrap, .product-detail-section, .cart-container, .wishlist-container) {
+  width:min(1120px,calc(100% - 80px));
+  margin-left:auto;
+  margin-right:auto;
+}
+:is(.section-title h1, .section-title h2, .hero h1, .product-hero h2) { font-weight:900; letter-spacing:-.7px; }
+.muted, .helper-text, .privacy, .delivery-hint { color:var(--sa-muted); }
+@media(max-width:760px) {
+  :is(.container, .account-wrap, .product-detail-section, .cart-container, .wishlist-container) {
+    width:calc(100% - 40px);
+  }
+}
+
+/* Mobile baseline: avoid horizontal scrolling and keep dense controls tappable. */
+@media(max-width:760px) {
+  html, body { max-width:100%; overflow-x:hidden; }
+  :is(.navbar, header) { gap:12px; }
+  :is(.logo, .nav-logo, .logo-text) { min-width:0; }
+  :is(.logo-main, .logo-title, .logo-main, .logo-title) { font-size:28px; letter-spacing:-1.8px; }
+  :is(.logo-subtitle, .logo-subtitle) { font-size:8px; letter-spacing:.6px; }
+  :is(.nav-links, .nav-icons) { max-width:100%; }
+  :is(.nav-icons, .nav-actions) { gap:7px; }
+  :is(.nav-links a, .login-pill, .nav-btn) { font-size:11px; }
+  :is(.hero, .cart-hero, .checkout-hero, .product-detail-section) { padding-left:20px; padding-right:20px; }
+  :is(.hero h1, .cart-hero h1, .checkout-hero h1, .product-hero h2) { font-size:clamp(30px,9vw,38px); }
+  :is(.card, .cart-section, .summary-card, .checkout-shell) { border-radius:16px; }
+  :is(.meta-grid, .custom-info-grid, .info-grid, .receipt-info-grid) { grid-template-columns:1fr; }
+  :is(.order-actions, .custom-actions, .success-actions, .receipt-modal-actions) { width:100%; }
+  :is(.order-actions, .custom-actions, .success-actions, .receipt-modal-actions) > :is(a, button) { flex:1 1 100%; min-width:0; }
+  :is(.receipt-modal, .receipt-modal.show) { padding:14px 10px; }
+  :is(.receipt-box, .receipt-card, .payment-card) { width:100%; max-height:calc(100vh - 28px); overflow:auto; }
+  :is(.notification-panel) { position:fixed; top:76px; right:10px; width:min(290px,calc(100vw - 20px)); }
+  :is(input, select, textarea, button) { min-height:42px; }
+}
+@media(max-width:430px) {
+  :is(.navbar, header) { padding-left:14px; padding-right:14px; }
+  :is(.login-pill, .icon-btn, .cart-btn, .menu-toggle) { width:38px; height:38px; }
+  :is(.hero-title, .hero h1) { font-size:34px; }
+  :is(.cart-item, .order-product-row) { gap:9px; }
+  :is(.item-details h4, .order-product-info strong) { font-size:.82rem; }
+}
+
+/* Responsive safety net for shared storefront pages. Desktop rules remain untouched. */
+*, *::before, *::after { box-sizing:border-box; }
+img, picture, video, canvas, svg { max-width:100%; height:auto; }
+input, select, textarea, button { max-width:100%; }
+textarea { min-width:0; }
+
+@media (max-width:1024px) {
+  :is(.about-grid, .products-grid, .finder-options, .footer-grid, .footer-content) { min-width:0; }
+  :is(.product-card, .about-card, .finder-option, .custom-request-card, .summary-card, .cart-section) { min-width:0; }
+  :is(.table-wrapper, .table-responsive, .table-container, .orders-table-wrap, .receipt-table-wrap) {
+    max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+}
+
+@media (min-width:500px) and (max-width:760px) {
+  /* Larger phones can use two tidy product columns without changing desktop grids. */
+  .products-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .product-img-box { height:180px; }
+}
+
+@media (max-width:760px) {
+  html { width:100%; }
+  body { width:100%; min-width:0; overflow-x:hidden; }
+  :is(.page-card, .app-container, .main-content, main, section, footer) { min-width:0; }
+
+  /* Prevent long values, file names and product names from pushing cards wider. */
+  :is(h1, h2, h3, h4, p, a, span, strong, small, td, th, label, .item-details, .product-details, .custom-content) {
+    overflow-wrap:anywhere;
+  }
+
+  :is(input[type='text'], input[type='email'], input[type='tel'], input[type='number'], input[type='password'], input[type='file'], select, textarea) {
+    width:100%; min-width:0;
+  }
+  :is(form, .form-grid, .form-row, .input-row, .form-actions, .button-row, .btn-group) { min-width:0; }
+  :is(.form-grid, .form-row, .input-row) { grid-template-columns:1fr; }
+
+  /* Tables scroll inside their own component instead of widening the page. */
+  :is(.table-wrapper, .table-responsive, .table-container, .orders-table-wrap, .receipt-table-wrap, .accordion-content) {
+    display:block; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  :is(.table-wrapper, .table-responsive, .table-container, .orders-table-wrap, .receipt-table-wrap) > table { min-width:560px; }
+
+  /* Keep dialogs within the viewport and allow their contents to scroll. */
+  :is(.modal, .app-modal, .custom-modal, .logout-modal, .login-required-modal, .receipt-modal) { padding:14px 10px; }
+  :is(.modal-box, .login-required-dialog, .receipt-box, .receipt-card, .receipt-paper) {
+    width:min(100%, 520px); max-width:calc(100vw - 20px); max-height:calc(100vh - 28px); overflow:auto;
+  }
+
+  :is(.footer-grid, .sa-footer-grid, .footer-content) { grid-template-columns:1fr; }
+  :is(.footer-brand-wrap, .footer-brand) { grid-column:auto; }
+}
+
+@media (max-width:430px) {
+  /* Keep the brand, action icons and menu on one balanced row where space permits. */
+  .navbar { align-items:center; gap:10px; }
+  .navbar .nav-icons { order:0; width:auto; margin-left:auto; justify-content:flex-end; gap:6px; }
+  .navbar .menu-toggle { order:0; margin-left:0; flex:0 0 auto; }
+  .navbar .nav-links { order:4; }
+  .navbar .logo-title, .navbar .logo-main { font-size:26px; letter-spacing:-1.6px; }
+  .navbar .logo-subtitle { font-size:7px; letter-spacing:.45px; }
+  .navbar .login-pill, .navbar .icon-btn { flex:0 0 38px; }
+  :is(.products-grid, .about-grid) { grid-template-columns:1fr; }
+  .product-img-box { height:200px; }
+  :is(.finder-options, .custom-info-grid) { grid-template-columns:1fr; }
+  :is(.btn-group, .hero-actions, .form-actions, .button-row) { flex-direction:column; align-items:stretch; }
+  :is(.btn-group, .hero-actions, .form-actions, .button-row) > :is(a, button, input[type='submit']) { width:100%; }
+}
+
+@media (max-width:360px) {
+  /* 320px phones cannot safely fit brand, four icons and menu in one row. */
+  .navbar .nav-icons { order:3; width:100%; margin-left:0; gap:8px; }
+  .navbar .menu-toggle { order:2; margin-left:auto; }
+}
+
+/* Cross-page responsive guardrails.  These are deliberately structural only: they
+   preserve each page's colours, typography and desktop composition. */
+html, body { max-width:100%; }
+body { overflow-x:hidden; }
+:is(.main-content, .content, .page-content, .table-card, .profile-card, .checkout-main,
+    .cart-main, .detail-grid, .layout, .form-card, .payment-card, .wallet-container) {
+  min-width:0;
+}
+
+@media (max-width:760px) {
+  /* Fixed-width administrative/storefront panels become fluid within the phone gutter. */
+  :is(.main-content, .container, .page-content) { max-width:100%; }
+  :is(.table-card, .card, .form-card, .profile-card, .summary-card, .payment-card) { max-width:100%; }
+  :is(.table-header, .table-footer, .toolbar, .toolbar-form, .head, .order-head, .custom-head) {
+    flex-wrap:wrap;
+  }
+  :is(.table-header, .table-footer, .toolbar-form) > * { min-width:0; }
+  :is(.table-header, .table-footer, .toolbar, .toolbar-form, .head) > :is(button, a, input, select) {
+    max-width:100%;
+  }
+  :is(.table-wrapper, .table-responsive) { width:100%; }
+  :is(.modal-content, .modal-box, .alert-box, .success, .wallet-container) {
+    max-width:calc(100vw - 28px);
+  }
+  :is(.modal-content, .modal-box, .alert-box) { margin-left:auto; margin-right:auto; }
+}
+
+@media (max-width:520px) {
+  :is(.table-header, .table-footer, .toolbar, .toolbar-form, .head, .order-head, .custom-head) {
+    flex-direction:column;
+    align-items:stretch;
+  }
+  :is(.table-header, .table-footer, .toolbar, .toolbar-form, .head) > :is(button, a, input, select) {
+    width:100%;
+  }
+  :is(.balance-box, .profile-top, .head-left) { min-width:0; }
+}
+
+@media (max-width:380px) {
+  /* Keep a signed-in header from exceeding narrow 320–375px viewports. */
+  .navbar .nav-icons { order:3; width:100%; margin-left:0; justify-content:flex-end; gap:8px; }
+  .navbar .menu-toggle { order:2; margin-left:auto; }
+  .navbar .nav-links { order:4; }
+  .navbar .menu-toggle,
+  .navbar .icon-btn,
+  .navbar .login-pill { width:44px; height:44px; }
+}
